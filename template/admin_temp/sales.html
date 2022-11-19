@@ -1,0 +1,49 @@
+{% load static %} 
+{% include "includes/base.html" %} 
+{% include "includes/navbarheader.html" %} 
+{% include "navtop.html"%}
+{% include "sidemenu.html" %}
+
+</nav>
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Restaurant Sales Information</h1>
+            <button hidden type="button" class="btn btn-primary" data-toggle="modal" data-target="#addFood">
+                Add Sales Data
+            </button>
+            <br>
+            <br>
+            <div id="addFood" class="modal fade" role="dialog">
+            </div>
+           <strong><i class="bi bi-info-circle-fill"></i>This Feature is not available and will be available in next update </strong>
+    </div>
+<!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+
+<!-- DataTables JavaScript -->
+<script src="{% static '/vendor/datatables/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static '/vendor/datatables-plugins/dataTables.bootstrap.min.js'%}"></script>
+<script src="{% static '/vendor/datatables-responsive/dataTables.responsive.js'%}"></script>
+
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+</script> 
+
+<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+<script src="{% static 'vendor/metisMenu/metisMenu.min.js'%}"></script>
+<script src="{% static 'dist/js/sb-admin-2.js'%}"></script>
+
+</body>
+
+</html>

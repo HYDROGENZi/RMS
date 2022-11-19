@@ -1,0 +1,75 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{% endblock %}
+{% block content %}
+<div class="page-header mb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+               
+            </div>
+            <div class="col-12">
+                <a href="/">Home</a>
+                <a href="/dishes">Dishes</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container my-4">
+   <div class="row">
+    <div class="col-md-4">
+        <div class="row">
+           <img src="/media/{{dish.image}}">
+        </div>
+        <div class="row">
+            <div class="col">
+            <button class="btn btn-primary btn-light my-4" style="width: 10rem;">Buy Now</button>
+            <button id="di{{i.id}}" class="btn btn-primary btn-dark my-4 cart" style="width: 10rem;">Add to cart</button>
+        </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h5>{{dish.name}}</h5>
+        <p>{{dish.details}}</p>
+        <p><del><i class="bi bi-currency-rupee"></i>{{dish.price}}</del></p>
+        {% if dis.discount != 0 %}
+        <p><strong><i class="bi bi-currency-rupee"></i>{{dish.sale_price}}</strong></p>
+        <p>Offer order now discount {{dish.discount}}%</p>
+        {% else %}
+        <p>Order now </p>
+        {% endif %}
+    </div>
+</div>
+</div>
+
+
+
+{% endblock %}
+{% block script %}
+<script>
+if(localStorage.getItem('cart') == null){
+    var cart = {};
+}
+else{
+    cart = JSON.parse(localStorage.getItem('cart'));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+}
+$('.cart').click(function(){
+    console.log('clicked');
+    var idstr = this.id.toString();
+    //console.log(idstr);
+    if (cart[idstr] != undefined ){
+        cart[idstr] = cart[idstr]+1;
+    }
+    else{
+        cart[idstr] = 1;
+    }
+   // console.log(cart);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+  
+});
+$('#popcart').popover();
+            document.getElementById("popcart").setAttribute('data-content','<h5>Cart</h5>');
+</script>
+{% endblock %}

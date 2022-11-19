@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+{% load mathfilters %}
+<div class="container">
+     <!-- Carousel Start -->
+     <div class="page-header mb-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Cart </h2>
+                </div>
+                <div class="col-12">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Carousel End -->
+    <!--cART CONTETNT-->
+    <br><br>
+    <div class="row">
+        <div class="col-lg12">
+            <div class="box-element" style="width: 1115px; padding: 10px; border:5px solid gray; margin:0;">
+                <a href="{% url 'menu' %}" class="btn btn-outline-dark my-4">&#x2190;Continue Shopping</a>
+
+                <br>
+                <br>
+                <table class="table">
+                    <tr>
+                        <th><h5>Items:<strong>{{order.get_cart_items}}</strong></h5></th>
+                        <th><h5>Total:<strong>{{total}}</strong></h5></th>
+                        <th>
+                            <a style="float:right; margin: 5px; " class="btn btn-success" href="{% url 'placeOrder' %}">Checkout</a>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+            <br><br><br><br>
+            <div class="box-element" style="width: 1115px; padding: 10px; border:5px solid gray; margin:0;">
+                <div class="cart-row" style="display: flex; align-items: flex-stretch; padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid #ececec;">
+                    <div style="flex:2"></div>
+                    <div style="flex:2"><strong>Item</strong></div>
+                    <div style="flex:2"><strong>Price</strong></div>
+                    <div style="flex:2"><strong>Quantity</strong></div>
+                    <div style="flex:2"><strong>Total</strong></div>
+                    <div style="flex:1"></div>
+                </div>
+                {% for item in items %}
+                <div class="cart-row" style="display: flex; align-items: flex-stretch; padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid #ececec;">
+                    <div style="flex:2"><img src="/media/{{item.dish.image}}" style="width:70%; height:90%;"></div>
+                    <div style="flex:2">{{item.dish.name}}</div>
+                    <div style="flex:2">Rs.{{item.dish.price|floatformat:2}}</div>
+                    <div style="flex:2">
+                        <p class="quantity">{{item.quantity}}</p>
+						<div class="quantity">
+							<img data-product="{{item.dish.id}}" data-action="add" class="chg-quantity update-cart" src="{% static  'images/arrow-up.png' %}">
+					
+							<img data-product="{{item.dish.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static  'images/arrow-down.png' %}">
+						</div>
+                    </div>
+                    <div style="flex:2">Rs.{{item.dish.sale_price|mul:item.quantity}}</div>
+                    <div style="flex:1"><a href="{% url 'delete_item' item.id %}"  class="btn btn-secondary btn-light">delete</a></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!--END-->
+</div>
+{% include 'base/footer.html' %}
+{% endblock %}

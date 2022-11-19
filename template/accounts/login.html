@@ -1,0 +1,136 @@
+{% include 'base/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FoodDelivery | Login</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="{% static 'vendor/metisMenu/metisMenu.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'dist/css/sb-admin-2.css'%}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
+
+<style>
+    .page-login {
+    position: relative;
+    margin-bottom: 45px;
+    padding: 150px 0 90px 0;
+    text-align: center;
+    background: linear-gradient(rgba(114, 108, 108, 0.5), rgba(133, 122, 122, 0.5)),url(../img/mx-onboarding-hero87f77501659a5656cad54d98e72bf0d81627911821.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.page-login h2 {
+    position: relative;
+    color: #fbaf32;
+    font-size: 60px;
+    font-weight: 700;
+}
+
+.page-login a {
+    position: relative;
+    padding: 0 12px;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.page-login a:hover {
+    color: #ffffff;
+}
+
+.page-login a::after {
+    position: absolute;
+    content: "/";
+    width: 8px;
+    height: 8px;
+    top: -1px;
+    right: -7px;
+    text-align: center;
+    color: #fbaf32;
+}
+
+.page-login a:last-child::after {
+    display: none;
+}
+
+@media (max-width: 767.98px) {
+    .page-login h2 {
+        font-size: 35px;
+    }
+    
+    .page-login a {
+        font-size: 18px;
+    }
+}
+</style>
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Please Sign In</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" method="POST" name="loginform">
+                            {% csrf_token %}
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Username" name="username" type="text" autofocus required>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="" required>
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+                                <button type="submit" name="submit" class="btn btn-lg btn-success btn-block">Login</button>
+                            </fieldset>
+                            <br>
+                            <div class="form-group text-center">
+                                <h5> Don't have a account! <a href="{% url 'register' %}">Signup</a> instead</h5>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{% static 'vendor/metisMenu/metisMenu.min.js'%}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static 'dist/js/sb-admin-2.js'%}"></script>
+
+{% endblock %}
+
+</html>
+
+
+
+
